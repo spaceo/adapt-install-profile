@@ -21,14 +21,13 @@ function adapt_install_profile_menu() {
 
 /**
  * Implements hook_form().
+ * This is the Basic Settings form
  */
 function adapt_install_profile_settings_form($node, &$form_state) {
-  // Build the languages array and unset the default language.
+  // Build the languages array.
   // The default language object is stored in the language_default variable.
   $langs = drupal_map_assoc(array(
-    'nl',
-    'de',
-    'fr',
+    'da',
     'en'
     ));
   $default_language = variable_get('language_default', (object) array('language' => 'da'));
@@ -57,11 +56,13 @@ function adapt_install_profile_settings_form($node, &$form_state) {
 }
 
 /**
- * Form submit handler.
+ * Form submit handler for Basic Settings form.
  */
 function adapt_install_profile_settings_form_submit($node, &$form_state) {
   // Handle the languages section
   _adapt_install_profile_settings_language_submit_handler($form_state['values']['active_languages']);
+
+  // More stuff to follow
 
   $form_state['redirect'] = '';
 
