@@ -12,7 +12,7 @@ function adapt_install_profile_menu() {
     'page callback' => 'drupal_get_form',
     // This page should only be available for the super user
     'page arguments' => array('adapt_install_profile_settings_form'),
-    'access callback' => 'access content', // TODO: Set
+    'access callback' => '_adapt_install_profile_is_super_user',
     'type' => MENU_CALLBACK,
     );
 
@@ -52,6 +52,11 @@ function adapt_install_profile_settings_form($node, &$form_state) {
       )),
     );
 
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+
   return $form;
 }
 
@@ -71,7 +76,7 @@ function adapt_install_profile_settings_form_submit($node, &$form_state) {
 }
 
 /**
- *
+ * Handles the languages part of the Basic Settings submit.
  */
 function _adapt_install_profile_settings_language_submit_handler($languages) {
   // Language counter is used to define if i18n needs to be enabled
@@ -109,6 +114,7 @@ function _adapt_install_profile_settings_language_submit_handler($languages) {
 function adapt_install_profile_install_tasks_alter(&$tasks, $install_state) {
   // Overwrite this with our own function where we'll add stuff.
   $tasks['install_finished']['function'] = '_adapt_install_profile_install_finished';
+  $tasks['install_select_locale']['function'] = '_adapt_install_profile_select_locale';
 }
 
 /**
@@ -150,3 +156,31 @@ function _adapt_install_profile_install_finished(&$install_state) {
 
   return $output;
 }
+
+/**
+ * hook_install_tasks_alter callback
+ *
+ * Don't show the language selection form, select Danish as the default
+ * installation language
+ */
+function _adapt_install_profile_select_locale(&$install_state) {
+  $install_state['parameters']['locale'] = 'da';
+  return;
+}
+
+/**
+ * Determine if current user is Super User, e.a. uid 1.
+ */
+function _adapt_install_profile_is_super_user() {
+  global $user;
+
+  if ($user->uid == 1) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
+ *
+ */

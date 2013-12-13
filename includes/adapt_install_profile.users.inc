@@ -6,11 +6,15 @@
  *
  * Should only be for the modules defined in the .info file of the install profile.
  * All the rest should handle its own permission setting.
+ *
+ * Caution, any permission you want to set must also have its module enabled,
+ * otherwise we'll get errors on install.
  */
 
 function _adapt_install_profile_users_start() {
   // Create new roles
-  $admin = _adapt_install_profile_roles_create('administrator', _adapt_install_profile_permissions_administrator(), 3);
+  // Admin role can't have its permissions set the normal way
+  $admin = _adapt_install_profile_roles_create('administrator', array_keys(module_invoke_all('permission')), 3);
   $editor = _adapt_install_profile_roles_create('editor', _adapt_install_profile_permissions_editor(), 4);
 
   // Assign user 1 the "administrator" role.
@@ -86,8 +90,6 @@ function _adapt_install_profile_permissions_administrator() {
     'access contextual links',
     // dashboard
     'access dashboard',
-    // filter
-    'use text format full_html',
     // googleanalytics
     'administer google analytics',
     'opt-in or out of tracking',

@@ -3,20 +3,20 @@
 /**
  * @file:
  * Sets variables and default settings for the modules defined in
- * _adapt_install_profile_users_start() that aren't already handled.
+ * _adapt_install_profile_variables_start() that aren't already handled.
  *
  * Should only be the modules defined in the .info file of the install profile.
  * All the rest should handle its own variable setting.
  */
 
-function _adapt_install_profile_users_start() {
+function _adapt_install_profile_variables_start() {
   // List of modules you want to set variables for.
   $modules = array(
     'pathauto',
     'system',
   );
 
-  foreach ($modules as $modules) {
+  foreach ($modules as $module) {
     $fn = "_set_variables_{$module}";
 
     if (function_exists($fn)) {
@@ -38,6 +38,9 @@ function _set_variables_pathauto() {
 
 /**
  * Set System variables & settings
+ *
+ * This function also includes general settings that are not tied to the system
+ * module, per se
  */
 function _set_variables_system() {
   // Enable seven and set it as admin theme

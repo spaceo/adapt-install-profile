@@ -12,6 +12,10 @@ function adapt_install_profile_install() {
   require_once($profile_base_path . "/includes/adapt_install_profile.content_types.inc");
   //_adapt_install_profile_content_types_start();
 
+  // Set languages & lang variables
+  require_once($profile_base_path . "/includes/adapt_install_profile.languages.inc");
+  _adapt_install_profile_languages_start();
+
   // Set taxonomy config
   require_once($profile_base_path . "/includes/adapt_install_profile.taxonomy.inc");
   //_adapt_install_profile_taxonomy_start();
@@ -20,7 +24,7 @@ function adapt_install_profile_install() {
   require_once($profile_base_path . "/includes/adapt_install_profile.users.inc");
   _adapt_install_profile_users_start();
 
-  // Set variables for core & the base modules
+  // Set variables & settings for core & the base modules
   require_once($profile_base_path . "/includes/adapt_install_profile.variables.inc");
   _adapt_install_profile_variables_start();
 
