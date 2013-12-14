@@ -28,13 +28,21 @@ function adapt_install_profile_menu() {
  * Implements hook_form_install_configure_form_alter().
  */
 function adapt_install_profile_form_install_configure_form_alter(&$form, $form_state) {
-  $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
-  $form['site_information']['site_mail']['#default_value'] = "info@adapt.dk";
+  // Import variable settings
+  require(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.variables.settings.inc");
+  
+  $form['site_information']['site_name']['#default_value'] = $site_name;
+  $form['site_information']['site_mail']['#default_value'] = $site_mail;
+  $form['server_settings']['site_default_country']['#default_value'] = $site_default_country;
+}
 
-  $form['admin_account']['account']["name"]['#default_value'] = "admin";
-  $form['admin_account']['account']["mail"]['#default_value'] = "info@adapt.dk";
-
-  $form['server_settings']['site_default_country']['#default_value'] = "DA";
+/**
+ * Implements hook_install_tasks_alter()
+ */
+function adapt_install_profile_install_tasks_alter(&$tasks, $install_state) {
+  // Overwrite this with our own function where we'll add stuff.
+  $tasks['install_finished']['function'] = '_adapt_install_profile_install_finished';
+  $tasks['install_select_locale']['function'] = '_adapt_install_profile_select_locale';
 }
 
 /**
@@ -43,7 +51,7 @@ function adapt_install_profile_form_install_configure_form_alter(&$form, $form_s
  */
 function adapt_install_profile_settings_form($node, &$form_state) {
   // Import language settings
-  require_once(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
+  require(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
 
   // Build the languages array.
   // The default language object is stored in the language_default variable.
@@ -132,15 +140,6 @@ function _adapt_install_profile_settings_language_submit_handler($languages) {
 }
 
 /**
- * Implements hook_install_tasks_alter()
- */
-function adapt_install_profile_install_tasks_alter(&$tasks, $install_state) {
-  // Overwrite this with our own function where we'll add stuff.
-  $tasks['install_finished']['function'] = '_adapt_install_profile_install_finished';
-  $tasks['install_select_locale']['function'] = '_adapt_install_profile_select_locale';
-}
-
-/**
  * hook_install_tasks_alter() callback
  *
  * Execute finish tasks and redirect to settings form
@@ -187,7 +186,7 @@ function _adapt_install_profile_install_finished(&$install_state) {
  */
 function _adapt_install_profile_select_locale(&$install_state) {
   // Import language settings
-  require_once(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
+  require(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
 
   $install_state['parameters']['locale'] = $default_language['langcode'];
 

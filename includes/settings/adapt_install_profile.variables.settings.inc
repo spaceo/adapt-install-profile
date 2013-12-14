@@ -6,6 +6,9 @@
  */
 
 $admin_theme = 'seven';
+$site_mail = 'info@adapt.dk';
+$site_name = 'Adapt Install Profile';
+$site_default_country = 'DK';
 
 // Define all variables per module
 $variables = array(
@@ -18,9 +21,9 @@ $variables = array(
   // System variables also includes general settings that are not tied to the system module, per se
   'system' => array(
     'admin_theme' => $admin_theme,
-    'node_admin_theme' => 1,
     // Disable this so we don't get the "choose timezone" on user register/edit forms
     'configurable_timezones' => 0,
+    'node_admin_theme' => 1,
     ),
   );
 
