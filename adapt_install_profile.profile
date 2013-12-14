@@ -1,5 +1,10 @@
 <?php
 
+// @var CONST
+// Define path to Install Profile
+$profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
+define('INSTALL_PROFILE_PATH', $profile_base_path);
+
 /**
  * Implements hook_menu().
  */

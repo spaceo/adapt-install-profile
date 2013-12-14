@@ -10,9 +10,8 @@
  */
 function _adapt_install_profile_languages_start() {
   // Import settings
-  $profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
-  require_once($profile_base_path . "/includes/settings/adapt_install_profile.languages.settings.inc");
-  
+  require_once(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
+
   // Set default language
   _adapt_install_profile_set_default_language($default_language);
 }

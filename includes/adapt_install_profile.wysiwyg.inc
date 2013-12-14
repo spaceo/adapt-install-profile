@@ -6,5 +6,4 @@
  */
 
 // Import settings
-$profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
-require_once($profile_base_path . "/includes/settings/adapt_install_profile.wysiwyg.settings.inc");
+require_once(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.wysiwyg.settings.inc");
