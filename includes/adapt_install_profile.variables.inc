@@ -9,45 +9,24 @@
  * All the rest should handle its own variable setting.
  */
 
+// Import settings
+$profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
+require_once($profile_base_path . "/includes/adapt_install_profile.variables.settings.inc");
+
+/**
+ * Start
+ */
 function _adapt_install_profile_variables_start() {
-  // List of modules you want to set variables for.
-  $modules = array(
-    'pathauto',
-    'system',
-  );
+  // Enable admin theme
+  theme_enable(array($admin_theme));
 
-  foreach ($modules as $module) {
-    $fn = "_set_variables_{$module}";
+  foreach ($variables as $module => $variable_array) {
+    if (!module_exists($module)) {
+      continue;
+    }
 
-    if (function_exists($fn)) {
-      call_user_func($fn);
+    foreach ($variable_array as $variable => $value) {
+      variable_set($variable, $value);
     }
   }
-}
-
-/**
- * Set pathauto variables
- */
-function _set_variables_pathauto() {
-  if (module_exists('pathauto')) {
-    // Disables the removing of the slash when creating an alias.
-    variable_set('pathauto_punctuation_slash', 2);
-    variable_set('pathauto_taxonomy_term_pattern', "[term:vocabulary]/[term:parents:join:/]/[term:name]");
-  }
-}
-
-/**
- * Set System variables & settings
- *
- * This function also includes general settings that are not tied to the system
- * module, per se
- */
-function _set_variables_system() {
-  // Enable seven and set it as admin theme
-  theme_enable(array('seven'));
-  variable_set('admin_theme', 'seven');
-  variable_set('node_admin_theme', 1);
-
-  // Disable this so we don't get the "choose timezone" on user register/edit forms
-  variable_set('configurable_timezones', 0);
 }

@@ -11,19 +11,16 @@
  * otherwise we'll get errors on install.
  */
 
+// Import settings
+$profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
+require_once($profile_base_path . "/includes/adapt_install_profile.users.settings.inc");
+
+/**
+ * Start
+ */
 function _adapt_install_profile_users_start() {
   // Create new roles
-  // Admin role can't have its permissions set the normal way
-  $admin = _adapt_install_profile_roles_create('administrator', array_keys(module_invoke_all('permission')), 3);
-  $editor = _adapt_install_profile_roles_create('editor', _adapt_install_profile_permissions_editor(), 4);
-
-  // Assign user 1 the "administrator" role.
-  db_insert('users_roles')
-    ->fields(array('uid' => 1, 'rid' => $admin->rid))
-    ->execute();
-
-  // Set the administrator role.
-  variable_set('user_admin_role', $admin->rid);
+  _adapt_install_profile_roles_create($roles);
 
   // Grant permissions for anonymous & authenticated users
   user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, _adapt_install_profile_permissions_anon());
@@ -36,82 +33,37 @@ function _adapt_install_profile_users_start() {
 /**
  * Create new roles and grant their permissions
  */
-function _adapt_install_profile_roles_create($name, $permissions = array(), $weight = 2) {
-  $role = new stdClass();
-  $role->name = $name;
-  $role->weight = $weight;
-  user_role_save($role);
-  user_role_grant_permissions($role->rid, $permissions);
+function _adapt_install_profile_roles_create($roles) {
+  foreach ($roles as $role) {
+    $fn = '_adapt_install_profile_permissions_' . $role['name'];
 
-  return $role;
-}
+    if (function_exists($fn)) {
+      $permissions = call_user_func($fn);
+    }
+    else {
+      $permissions = array();
+    }
 
-/**
- * Define permissions for Anonymous User
- */
-function _adapt_install_profile_permissions_anon() {
-  return array(
-    'access content',
-    'search content'
-    );
-}
+    $newrole = new stdClass();
+    $newrole->name = $role['name'];
+    $newrole->weight = $role['weight'];
+    user_role_save($newrole);
 
-/**
- * Define permissions for Authenticated User
- */
-function _adapt_install_profile_permissions_auth() {
-  return array(
-    'access content',
-    'search content'
-    );
-}
+    // Special love for the admin role
+    if ($role['name'] == 'administrator') {
+      // Assign user 1 the "administrator" role.
+      db_insert('users_roles')
+      ->fields(array('uid' => 1, 'rid' => $newrole->rid))
+      ->execute();
 
-/**
- * Define permissions for Editor
- */
-function _adapt_install_profile_permissions_editor() {
-  return array(
-    'access content',
-    'search content'
-    );
-}
+      // Set the administrator role.
+      variable_set('user_admin_role', $newrole->rid);
 
-/**
- * Define permissions for Administrator
- */
-function _adapt_install_profile_permissions_administrator() {
-  return array(
-    // admin_menu
-    'access administration menu',
-    'flush caches',
-    // blocks
-    'administer blocks',
-    // contextual links
-    'access contextual links',
-    // dashboard
-    'access dashboard',
-    // googleanalytics
-    'administer google analytics',
-    'opt-in or out of tracking',
-    // locale
-    'translate interface',
-    // menu
-    'administer menu',
-    // node
-    'administer nodes',
-    'access content overview',
-    'view own unpublished content',
-    'create page content',
-    'edit any page content',
-    'delete any page content',
-    // path
-    'administer url aliases',
-    'create url aliases',
-    // system
-    'access administration pages',
-    'access site in maintenance mode',
-    'view the administration theme',
-    // taxonomy
-    'administer taxonomy',
-    );
+      // Todo: set permissions for admin role
+      // Somehow it won't work through user_role_grant_permissions()
+    }
+    else {
+      user_role_grant_permissions($newrole->rid, $permissions);
+    }
+  }
 }
