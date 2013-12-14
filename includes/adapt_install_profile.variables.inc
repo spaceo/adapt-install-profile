@@ -11,7 +11,7 @@
 
 // Import settings
 $profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
-require_once($profile_base_path . "/includes/adapt_install_profile.variables.settings.inc");
+require_once($profile_base_path . "/includes/settingsadapt_install_profile.variables.settings.inc");
 
 /**
  * Start

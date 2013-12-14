@@ -8,4 +8,4 @@
 
 // Import settings
 $profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
-require_once($profile_base_path . "/includes/adapt_install_profile.content_types.settings.inc");
+require_once($profile_base_path . "/includes/settings/adapt_install_profile.content_types.settings.inc");
