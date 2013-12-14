@@ -25,18 +25,34 @@ function adapt_install_profile_menu() {
 }
 
 /**
+ * Implements hook_form_install_configure_form_alter().
+ */
+function adapt_install_profile_form_install_configure_form_alter(&$form, $form_state) {
+  $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
+  $form['site_information']['site_mail']['#default_value'] = "info@adapt.dk";
+
+  $form['admin_account']['account']["name"]['#default_value'] = "admin";
+  $form['admin_account']['account']["mail"]['#default_value'] = "info@adapt.dk";
+
+  $form['server_settings']['site_default_country']['#default_value'] = "DA";
+}
+
+/**
  * Implements hook_form().
  * This is the Basic Settings form
  */
 function adapt_install_profile_settings_form($node, &$form_state) {
+  // Import language settings
+  require_once(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
+
   // Build the languages array.
   // The default language object is stored in the language_default variable.
   $langs = drupal_map_assoc(array(
     'da',
     'en'
     ));
-  $default_language = variable_get('language_default', (object) array('language' => 'da'));
-  $enabled_languages = @array_keys(reset(language_list('enabled')));
+  $default_lang = variable_get('language_default', (object) array('language' => $default_language['langcode']));
+  $enabled_langs = @array_keys(reset(language_list('enabled')));
 
   // Build the form.
   $form = array();
@@ -50,17 +66,17 @@ function adapt_install_profile_settings_form($node, &$form_state) {
   $form['languages']['active_languages'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Which languages would you like to enable?'),
-    '#options' => array_diff($langs, $enabled_languages),
+    '#options' => array_diff($langs, $enabled_langs),
     '#description' => t('<strong>Enabled language(s):</strong><br />@langs<br /><br /><strong>Default language:</strong><br />@def_lang', array(
-      '@langs' => implode(', ', $enabled_languages),
-      '@def_lang' => $default_language->language,
+      '@langs' => implode(', ', $enabled_langs),
+      '@def_lang' => $default_lang->language,
       )),
     );
 
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Submit'),
-  );
+    );
 
   return $form;
 }
@@ -88,23 +104,25 @@ function _adapt_install_profile_settings_language_submit_handler($languages) {
   // and to set the language_count variable.
   $enabled_count = 1;
   foreach ($languages as $langcode => $name) {
-    if ($name !== 0) {
-      // Enable the language
-      if (!array_key_exists($langcode, language_list())) {
-        locale_add_language($langcode);
-      } else {
-        // Update an existing language, can be done with a simple query
-        // @see locale_languages_overview_form_submit
-        db_update('languages')
-        ->fields(array(
-          'enabled' => 1,
-          ))
-        ->condition('language', $langcode)
-        ->execute();
-      }
-      // And update the language counter
-      $enabled_count++;
+    if ($name === 0) {
+      continue;
     }
+
+    // Enable the language
+    if (!array_key_exists($langcode, language_list())) {
+      locale_add_language($langcode);
+    } else {
+      // Update an existing language, can be done with a simple query
+      // @see locale_languages_overview_form_submit
+      db_update('languages')
+      ->fields(array(
+        'enabled' => 1,
+        ))
+      ->condition('language', $langcode)
+      ->execute();
+    }
+    // And update the language counter
+    $enabled_count++;
   }
 
   variable_set('language_count', $enabled_count);
@@ -165,11 +183,14 @@ function _adapt_install_profile_install_finished(&$install_state) {
 /**
  * hook_install_tasks_alter callback
  *
- * Don't show the language selection form, select Danish as the default
- * installation language
+ * Don't show the language selection form, select our own default language
  */
 function _adapt_install_profile_select_locale(&$install_state) {
-  $install_state['parameters']['locale'] = 'da';
+  // Import language settings
+  require_once(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
+
+  $install_state['parameters']['locale'] = $default_language['langcode'];
+
   return;
 }
 
