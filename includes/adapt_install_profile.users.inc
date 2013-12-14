@@ -11,20 +11,20 @@
  * otherwise we'll get errors on install.
  */
 
-// Import settings
-$profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
-require_once($profile_base_path . "/includes/settings/adapt_install_profile.users.settings.inc");
-
 /**
  * Start
  */
 function _adapt_install_profile_users_start() {
+  // Import settings
+  $profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
+  require_once($profile_base_path . "/includes/settings/adapt_install_profile.users.settings.inc");
+
   // Create new roles
-  _adapt_install_profile_roles_create($roles);
+  _adapt_install_profile_roles_create($roles, $permissions);
 
   // Grant permissions for anonymous & authenticated users
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, _adapt_install_profile_permissions_anon());
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, _adapt_install_profile_permissions_auth());
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $permissions['anonymous']);
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $permissions['authenticated']);
 
   // Create users
   // TODO
@@ -33,17 +33,8 @@ function _adapt_install_profile_users_start() {
 /**
  * Create new roles and grant their permissions
  */
-function _adapt_install_profile_roles_create($roles) {
+function _adapt_install_profile_roles_create($roles, $permissions) {
   foreach ($roles as $role) {
-    $fn = '_adapt_install_profile_permissions_' . $role['name'];
-
-    if (function_exists($fn)) {
-      $permissions = call_user_func($fn);
-    }
-    else {
-      $permissions = array();
-    }
-
     $newrole = new stdClass();
     $newrole->name = $role['name'];
     $newrole->weight = $role['weight'];
@@ -63,7 +54,7 @@ function _adapt_install_profile_roles_create($roles) {
       // Somehow it won't work through user_role_grant_permissions()
     }
     else {
-      user_role_grant_permissions($newrole->rid, $permissions);
+      user_role_grant_permissions($newrole->rid, $permissions[$newrole->name]);
     }
   }
 }

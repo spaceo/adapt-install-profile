@@ -9,7 +9,7 @@ function adapt_install_profile_install() {
   $profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
 
   // Set content types
-  require_once($profile_base_path . "/includes/adapt_install_profile.content_types.inc");
+  // require_once($profile_base_path . "/includes/adapt_install_profile.content_types.inc");
   //_adapt_install_profile_content_types_start();
 
   // Set languages & lang variables
@@ -17,7 +17,7 @@ function adapt_install_profile_install() {
   _adapt_install_profile_languages_start();
 
   // Set taxonomy config
-  require_once($profile_base_path . "/includes/adapt_install_profile.taxonomy.inc");
+  // require_once($profile_base_path . "/includes/adapt_install_profile.taxonomy.inc");
   //_adapt_install_profile_taxonomy_start();
 
   // Create, enable and configer users
@@ -29,6 +29,6 @@ function adapt_install_profile_install() {
   _adapt_install_profile_variables_start();
 
   // Set text formats & wysiwyg
-  require_once($profile_base_path . "/includes/adapt_install_profile.wysiwyg.inc");
+  // require_once($profile_base_path . "/includes/adapt_install_profile.wysiwyg.inc");
   //_adapt_install_profile_wysiwyg_start();
 }

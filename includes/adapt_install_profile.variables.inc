@@ -9,14 +9,14 @@
  * All the rest should handle its own variable setting.
  */
 
-// Import settings
-$profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
-require_once($profile_base_path . "/includes/settingsadapt_install_profile.variables.settings.inc");
-
 /**
  * Start
  */
 function _adapt_install_profile_variables_start() {
+  // Import settings
+  $profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
+  require_once($profile_base_path . "/includes/settings/adapt_install_profile.variables.settings.inc");
+
   // Enable admin theme
   theme_enable(array($admin_theme));
 

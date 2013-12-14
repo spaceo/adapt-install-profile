@@ -5,49 +5,30 @@
  * Settings for different roles & permissions
  *
  * If you want to define permissions for any role you wish to add in the $roles array,
- * you should define them in a _adapt_install_profile_permissions_[roleName] function
+ * you should define them in a adapt_install_profile_permissions_[roleName] variable
  */
 
+// Any new roles you wish to add
 $roles = array(
   0 => array('name' => 'administrator', 'weight' => 3),
   1 => array('name' => 'editor', 'weight' => 4),
-  );
+);
 
-/**
- * Define permissions for Anonymous User
- */
-function _adapt_install_profile_permissions_anon() {
-  return array(
+// Permissions for all roles, including standard Drupal roles
+$permissions = array(
+  'anonymous' => array(
     'access content',
     'search content'
-    );
-}
-
-/**
- * Define permissions for Authenticated User
- */
-function _adapt_install_profile_permissions_auth() {
-  return array(
+  ),
+  'authenticated' => array(
     'access content',
     'search content'
-    );
-}
-
-/**
- * Define permissions for Editor
- */
-function _adapt_install_profile_permissions_editor() {
-  return array(
+  ),
+  'editor' => array(
     'access content',
     'search content'
-    );
-}
-
-/**
- * Define permissions for Administrator
- */
-function _adapt_install_profile_permissions_administrator() {
-  return array(
+  ),
+  'administrator' => array(
     // admin_menu
     'access administration menu',
     'flush caches',
@@ -80,5 +61,5 @@ function _adapt_install_profile_permissions_administrator() {
     'view the administration theme',
     // taxonomy
     'administer taxonomy',
-    );
-}
+  ),
+);
