@@ -29,7 +29,7 @@ function adapt_install_profile_menu() {
  */
 function adapt_install_profile_form_install_configure_form_alter(&$form, $form_state) {
   // Import variable settings
-  require(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.variables.settings.inc");
+  require(INSTALL_PROFILE_PATH . "/includes/variables/settings.inc");
   
   $form['site_information']['site_name']['#default_value'] = $site_name;
   $form['site_information']['site_mail']['#default_value'] = $site_mail;
@@ -51,7 +51,7 @@ function adapt_install_profile_install_tasks_alter(&$tasks, $install_state) {
  */
 function adapt_install_profile_settings_form($node, &$form_state) {
   // Import language settings
-  require(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
+  require(INSTALL_PROFILE_PATH . "/includes/languages/settings.inc");
 
   // Build the languages array.
   // The default language object is stored in the language_default variable.
@@ -186,7 +186,7 @@ function _adapt_install_profile_install_finished(&$install_state) {
  */
 function _adapt_install_profile_select_locale(&$install_state) {
   // Import language settings
-  require(INSTALL_PROFILE_PATH . "/includes/settings/adapt_install_profile.languages.settings.inc");
+  require(INSTALL_PROFILE_PATH . "/includes/languages/settings.inc");
 
   $install_state['parameters']['locale'] = $default_language['langcode'];
 

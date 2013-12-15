@@ -8,13 +8,14 @@
  * you should define them in a adapt_install_profile_permissions_[roleName] variable
  */
 
-// Any new roles you wish to add
+// Any *new* roles you wish to add
 $roles = array(
   0 => array('name' => 'administrator', 'weight' => 3),
   1 => array('name' => 'editor', 'weight' => 4),
 );
 
-// Permissions for all roles, including standard Drupal roles
+// Permissions for *all* roles, including standard Drupal roles
+// name in $roles array and key in $permissions array must be identical.
 $permissions = array(
   'anonymous' => array(
     'access content',

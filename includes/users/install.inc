@@ -17,7 +17,7 @@
 function _adapt_install_profile_users_start() {
   // Import settings
   $profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
-  require($profile_base_path . "/includes/settings/adapt_install_profile.users.settings.inc");
+  require($profile_base_path . "/includes/users/settings.inc");
 
   // Create new roles
   _adapt_install_profile_roles_create($roles, $permissions);
