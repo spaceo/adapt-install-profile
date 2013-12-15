@@ -1,7 +1,6 @@
 # Adapt install profile
 
 ## Concept
-===
 
 The Adapt Install Profile is meant to be a basis upon which new sites can be built.
 It will pre-configure settings that are common for all of Adapt's developed sites.
@@ -15,7 +14,6 @@ a fully automated setup through Drush/Apache build script should also be possibl
 
 
 ## File / Folder structure
-===
 
 * adapt_install_profile.info: Definition of all needed modules (core, contrib & custom) that are needed
 for a basic setup.
