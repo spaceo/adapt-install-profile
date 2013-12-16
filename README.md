@@ -22,7 +22,6 @@ for a basic setup.
 * adapt_install_profile.install: Where most of the magic happens. Will include all the files in the /includes
 folder. Everything included here will be executed no matter what and is not optional. All optional stuff will be
 packed into seperate modules and will be available on the Basic Settings form.
-
 * adapt_install_profile.profile: Holds the config for the Base Settings form.
 * /includes: Include files. Outsourcing of logic from the .install file to keep a nice overview of
 things. Everything in here is grouped in folders, each containing two files: a settings file

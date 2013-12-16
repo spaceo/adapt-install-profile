@@ -30,7 +30,7 @@ function adapt_install_profile_menu() {
 function adapt_install_profile_form_install_configure_form_alter(&$form, $form_state) {
   // Import variable settings
   require(INSTALL_PROFILE_PATH . "/includes/variables/settings.inc");
-  
+
   $form['site_information']['site_name']['#default_value'] = $site_name;
   $form['site_information']['site_mail']['#default_value'] = $site_mail;
   $form['server_settings']['site_default_country']['#default_value'] = $site_default_country;
