@@ -25,9 +25,9 @@ function adapt_install_profile_menu() {
 }
 
 /**
- * Implements hook_login().
+ * Implements hook_user_login().
  */
-function theaim_base_settings_user_login(&$edit, $account) {
+function adapt_install_profile_user_login(&$edit, $account) {
   // Redirect to settings form if they haven't been set yet
   if (!variable_get('adapt_install_completed') && _adapt_install_profile_is_super_user()) {
     $edit['redirect'] = 'admin/adapt-install-profile-settings';
