@@ -1,5 +1,6 @@
 .idea
 modules/contrib/*
 modules/development/*
+libraries/*
 themes/contrib/*
 .DS_Store
