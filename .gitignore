@@ -2,4 +2,4 @@
 modules/contrib/*
 modules/development/*
 themes/contrib/*
-
+.DS_Store
