@@ -5,22 +5,31 @@
  * Settings for wysiwyg
  */
 
-// Define all text formats
+// Define all text formats and their filters
 $text_formats = array(
-  'filtered_html' => array(
+  'filtered_html' => (object) array(
     'format' => 'filtered_html',
     'name' => 'Filtered HTML',
     'weight' => 0,
     'filters' => array(
+      // CkEditor Link
+      'ckeditor_link_filter' => array(
+        'weight' => 0,
+        'status' => 1,
+        'settings' => array(),
+        ),
       // URL filter.
       'filter_url' => array(
-        'weight' => 0,
+        'weight' => 1,
         'status' => 1,
         ),
        // HTML filter.
       'filter_html' => array(
         'weight' => 2,
         'status' => 1,
+        'settings' => array(
+          'allowed_html' => '<a><em><strong><cite><blockquote><code><ul><ol><li><dl><dt><dd><img><h1><h2><h3><h4><p><span><br><table><tr><td><tbody><iframe>'
+          )
         ),
        // Line break filter.
       'filter_autop' => array(
@@ -90,5 +99,5 @@ $wysiwyg_settings = array(
       'css_path' => '%t/css/editor.css',
       'css_classes' => '',
       )
-  ),
+),
 );

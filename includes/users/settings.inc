@@ -18,16 +18,23 @@ $roles = array(
 // name in $roles array and key in $permissions array must be identical.
 $permissions = array(
   'anonymous' => array(
+    // Search
     'access content',
     'search content'
   ),
   'authenticated' => array(
+    // Search
     'access content',
     'search content'
   ),
   'editor' => array(
+    // ckeditor
+    'access ckeditor link',
+    // search
     'access content',
-    'search content'
+    'search content',
+    // text formats
+    'use text format filtered_html',
   ),
   'administrator' => array(
     // admin_menu
@@ -35,6 +42,8 @@ $permissions = array(
     'flush caches',
     // blocks
     'administer blocks',
+    // ckeditor
+    'access ckeditor link',
     // contextual links
     'access contextual links',
     // dashboard
@@ -62,5 +71,7 @@ $permissions = array(
     'view the administration theme',
     // taxonomy
     'administer taxonomy',
+    // text formats
+    'use text format filtered_html',
   ),
 );

@@ -24,8 +24,8 @@ function _adapt_install_profile_wysiwyg_start() {
  * Save text formats
  */
 function _adapt_install_profile_save_text_formats($formats) {
-  foreach ($format as $f) {
-    filter_format_save($f);
+  foreach ($formats as $format) {
+    filter_format_save($format);
   }
 }
 

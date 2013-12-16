@@ -24,6 +24,8 @@ $variables = array(
     // Disable this so we don't get the "choose timezone" on user register/edit forms
     'configurable_timezones' => 0,
     'node_admin_theme' => 1,
+    // Register only for admins
+    'user_register' => 0,
     ),
   );
 
