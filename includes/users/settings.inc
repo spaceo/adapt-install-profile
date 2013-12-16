@@ -49,8 +49,8 @@ $permissions = array(
     // dashboard
     'access dashboard',
     // googleanalytics
-    'administer google analytics',
-    'opt-in or out of tracking',
+    //'administer google analytics',
+    //'opt-in or out of tracking',
     // locale
     'translate interface',
     // menu
