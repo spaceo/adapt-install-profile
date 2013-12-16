@@ -7,12 +7,41 @@
 
 // Define all text formats and their filters
 $text_formats = array(
+  'full_html' => (object) array(
+    'format' => 'full_html',
+    'name' => 'Full HTML',
+    'cache' => '1',
+    'status' => '1',
+    'weight' => '1',
+    'filters' => array(
+      // URL filter.
+      'filter_url' => array(
+        'weight' => '0',
+        'status' => '1',
+        'settings' => array(
+          'filter_url_length' => '72',
+          ),
+        ),
+      // Line break filter.
+      'filter_autop' => array(
+        'weight' => '2',
+        'status' => '1',
+        'settings' => array(),
+        ),
+      // HTML corrector filter.
+      'filter_htmlcorrector' => array(
+        'weight' => '10',
+        'status' => '1',
+        'settings' => array(),
+        ),
+      ),
+    ),
   'filtered_html' => (object) array(
     'format' => 'filtered_html',
     'name' => 'Filtered HTML',
     'weight' => 0,
     'filters' => array(
-      // CkEditor Link
+      // CkEditor Link.
       'ckeditor_link_filter' => array(
         'weight' => 0,
         'status' => 1,
@@ -101,3 +130,10 @@ $wysiwyg_settings = array(
       )
 ),
 );
+
+// Define various settings
+// These will be handled by variable_set()
+$settings = array(
+  // Allow any vocabulary to be found by ckEditor Link
+  'ckeditor_link_autocomplete_vocabularies' => array('[- any -]' => '- any -'),
+  );
