@@ -20,7 +20,6 @@ for a basic setup.
 * adapt_install_profile.make: Make file
 * distro.make: Distro file
 * adapt_install_profile.install: Where most of the magic happens. Will include all the files in the /includes folder.
-
 Everything included here will be executed no matter what and is not optional. All optional stuff will be packed into seperate
 modules and will be available on the Basic Settings form.
 
