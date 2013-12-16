@@ -17,11 +17,21 @@ function adapt_install_profile_menu() {
     'page callback' => 'drupal_get_form',
     // This page should only be available for the super user
     'page arguments' => array('adapt_install_profile_settings_form'),
-    'access callback' => '_adapt_install_profile_is_super_user',
+    'access callback' => '_adapt_install_profile_settings_form_access',
     'type' => MENU_CALLBACK,
     );
 
   return $items;
+}
+
+/**
+ * Implements hook_login().
+ */
+function theaim_base_settings_user_login(&$edit, $account) {
+  // Redirect to settings form if they haven't been set yet
+  if (!variable_get('adapt_install_completed') && _adapt_install_profile_is_super_user()) {
+    $edit['redirect'] = 'admin/adapt-install-profile-settings';
+  }
 }
 
 /**
@@ -100,6 +110,9 @@ function adapt_install_profile_settings_form_submit($node, &$form_state) {
 
   $form_state['redirect'] = '';
 
+  // let the site know the install was completed
+  variable_set('adapt_install_completed', TRUE);
+
   // clear all caches after settings completion
   cache_clear_all();
 }
@@ -119,7 +132,8 @@ function _adapt_install_profile_settings_language_submit_handler($languages) {
     // Enable the language
     if (!array_key_exists($langcode, language_list())) {
       locale_add_language($langcode);
-    } else {
+    }
+    else {
       // Update an existing language, can be done with a simple query
       // @see locale_languages_overview_form_submit
       db_update('languages')
@@ -191,6 +205,18 @@ function _adapt_install_profile_select_locale(&$install_state) {
   $install_state['parameters']['locale'] = $default_language['langcode'];
 
   return;
+}
+
+/**
+ * Access callback for the settings form
+ */
+function _adapt_install_profile_settings_form_access() {
+  // Only allow access if it hasn't been run before and if logged in user is user 1
+  if (!variable_get('adapt_install_completed') && _adapt_install_profile_is_super_user()) {
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 /**
