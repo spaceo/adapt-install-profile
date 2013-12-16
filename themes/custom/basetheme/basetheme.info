@@ -1,0 +1,19 @@
+name        = Basetheme
+description = Basetheme for Adapt
+core        = 7.x
+engine      = phptemplate
+
+
+; JS
+; -----------------------------------
+
+scripts[] = js/respond.js
+scripts[] = js/script.js
+
+
+; REGIONS
+; -----------------------------------
+
+regions[header]         = Header
+regions[content]        = Content
+regions[footer]         = Footer
