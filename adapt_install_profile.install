@@ -8,6 +8,12 @@
 function adapt_install_profile_install() {
   $profile_base_path = drupal_get_path('profile', 'adapt_install_profile');
 
+  // Create, enable and configer users & permissions
+  // We wanna do this first because we need the rids to set permissions in
+  // later-to-be-executed plugins
+  require_once($profile_base_path . "/includes/users/install.inc");
+  _adapt_install_profile_users_start();
+
   // Set content types
   require_once($profile_base_path . "/includes/content_types/install.inc");
   _adapt_install_profile_content_types_start();
@@ -27,10 +33,33 @@ function adapt_install_profile_install() {
   // Set text formats & wysiwyg
   require_once($profile_base_path . "/includes/wysiwyg/install.inc");
   _adapt_install_profile_wysiwyg_start();
+}
 
-  // Create, enable and configer users & permissions
-  // We wanna do this because if we set permissions for not-yet enabled modules
-  // it will fail
-  require_once($profile_base_path . "/includes/users/install.inc");
-  _adapt_install_profile_users_start();
+/**
+ * Set permissions
+ */
+function _adapt_install_profile_set_permissions($permissions) {
+  $rids = variable_get('adapt_rids', array());
+
+  foreach ($permissions as $role => $permissions_array) {
+    if ($role == 'anonymous') {
+      user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $permissions['anonymous']);
+    }
+    elseif ($role == 'authenticated') {
+      user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $permissions['authenticated']);
+    }
+    elseif (isset($rids[$role])) {
+      user_role_grant_permissions($rids[$role], $permissions_array);
+    }
+  }
+}
+
+
+/**
+ * Set variables
+ */
+function _adapt_install_profile_set_variables($variables) {
+  foreach ($variables as $variable => $value) {
+    variable_set($variable, $value);
+  }
 }

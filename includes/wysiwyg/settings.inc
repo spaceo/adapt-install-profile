@@ -133,7 +133,24 @@ $wysiwyg_settings = array(
 
 // Define various settings
 // These will be handled by variable_set()
-$settings = array(
+$wysiwyg_options = array(
   // Allow any vocabulary to be found by ckEditor Link
   'ckeditor_link_autocomplete_vocabularies' => array('[- any -]' => '- any -'),
+  );
+
+// Permissions
+$wysiwyg_permissions = array(
+  'editor' => array(
+    // ckeditor
+    'access ckeditor link',
+    // text formats
+    'use text format filtered_html',
+    ),
+  'administrator' => array(
+    // ckeditor
+    'access ckeditor link',
+    // text formats
+    'use text format filtered_html',
+    'use text format full_html',
+    ),
   );

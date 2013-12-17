@@ -20,24 +20,26 @@ function _adapt_install_profile_users_start() {
   require($profile_base_path . "/includes/users/settings.inc");
 
   // Create new roles
-  _adapt_install_profile_roles_create($roles, $permissions);
+  _adapt_install_profile_create_roles($roles, $permissions);
 
-  // Grant permissions for anonymous & authenticated users
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, $permissions['anonymous']);
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, $permissions['authenticated']);
+  // Set permissions
+  _adapt_install_profile_set_permissions($general_permissions);
 
   // Create users
   // TODO
 }
 
 /**
- * Create new roles and grant their permissions
+ * Create new roles
  */
-function _adapt_install_profile_roles_create($roles, $permissions) {
+function _adapt_install_profile_create_roles($roles) {
+  $rids = variable_get('adapt_rids', array());
+
   foreach ($roles as $role) {
     $newrole = new stdClass();
     $newrole->name = $role['name'];
     $newrole->weight = $role['weight'];
+
     user_role_save($newrole);
 
     // Special love for the admin role
@@ -49,12 +51,13 @@ function _adapt_install_profile_roles_create($roles, $permissions) {
 
       // Set the administrator role.
       variable_set('user_admin_role', $newrole->rid);
+    }
 
-      // Todo: set permissions for admin role
-      // Somehow it won't work through user_role_grant_permissions()
-    }
-    else {
-      user_role_grant_permissions($newrole->rid, $permissions[$newrole->name]);
-    }
+    // Set role id for later use, we'll need it when setting permissions in other
+    // install plugins
+    $rids[$newrole->name] = $newrole->rid;
   }
+
+  variable_set('adapt_rids', $rids);
 }
+

@@ -17,8 +17,11 @@ function _adapt_install_profile_content_types_start() {
   // Save content types
   _adapt_install_profile_create_content_types($content_types);
 
-  // Set options for content types
-  _adapt_install_profile_set_content_types_options($content_types_options);
+  // Set options (variables) for content types
+  _adapt_install_profile_set_variables($content_types_options);
+
+  // Set permissions for content types
+  _adapt_install_profile_set_permissions($content_types_permissions);
 }
 
 /**
@@ -32,11 +35,3 @@ function _adapt_install_profile_create_content_types($types) {
   }
 }
 
-/**
- * Set content types options
- */
-function _adapt_install_profile_set_content_types_options($options) {
-  foreach ($options as $variable => $value) {
-    variable_set($variable, $value);
-  }
-}

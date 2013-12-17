@@ -3,7 +3,7 @@
 /**
  * @file:
  * Sets variables and default settings for the modules used in this install
- * profile that aren't already handled.
+ * profile that aren't already handled by plugins.
  *
  * Should only be the modules defined in the .info file of the install profile.
  * All the rest should handle its own variable setting.

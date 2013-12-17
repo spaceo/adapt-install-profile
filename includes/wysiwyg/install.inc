@@ -19,8 +19,11 @@ function _adapt_install_profile_wysiwyg_start() {
   // Set Wysiwyg settings
   _adapt_install_profile_set_wysiwyg_settings($wysiwyg_settings);
 
-  // Set various settings
-  _adapt_install_profile_set_wysiwyg_variables($settings);
+  // Set variables
+  _adapt_install_profile_set_variables($wysiwyg_options);
+
+  // Set permissions
+  _adapt_install_profile_set_permissions($wysiwyg_permissions);
 }
 
 /**
@@ -49,13 +52,4 @@ function _adapt_install_profile_set_wysiwyg_settings($settings) {
   }
 
   wysiwyg_profile_cache_clear();
-}
-
-/**
- * Set various variables to do with wysiwyg
- */
-function _adapt_install_profile_set_wysiwyg_variables($settings) {
-  foreach ($settings as $variable => $value) {
-    variable_set($variable, $value);
-  }
 }

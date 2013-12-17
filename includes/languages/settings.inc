@@ -13,3 +13,10 @@ $default_language = array(
   'domain' => '',
   'prefix' => '',
   );
+
+$language_permissions = array(
+  'administrator' => array(
+    // locale
+    'translate interface',
+    ),
+  );

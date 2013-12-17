@@ -18,10 +18,23 @@ $content_types = array(
     ),
   );
 
-// Options (variables) for Content Types.
+/**
+ * Variables
+ */
 $content_types_options = array(
   // Default "Basic page" to not be promoted and have comments disabled.
   'node_options_page' => array('status'),
   // Don't display date and author information for "Basic page" nodes by default.
   'node_submitted_page' => FALSE
+  );
+
+/**
+ * Permissions
+ */
+$content_types_permissions = array(
+  'administrator' => array(
+    'create page content',
+    'edit any page content',
+    'delete any page content',
+    ),
   );

@@ -15,6 +15,9 @@ function _adapt_install_profile_languages_start() {
 
   // Set default language
   _adapt_install_profile_set_default_language($default_language);
+
+  // Set permissions
+  _adapt_install_profile_set_permissions($language_permissions);
 }
 
 /**

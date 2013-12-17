@@ -6,6 +6,10 @@
  *
  * If you want to define permissions for any role you wish to add in the $roles array,
  * you should define them in a adapt_install_profile_permissions_[roleName] variable
+ *
+ * Note on permissions: only permissions that are not handled by specific modules or
+ * other plugins shall be handled here, e.a. 'access ckeditor link' will be handled by
+ * /includes/wysiwyg/ etc.
  */
 
 // Any *new* roles you wish to add
@@ -16,7 +20,7 @@ $roles = array(
 
 // Permissions for *all* roles, including standard Drupal roles
 // name in $roles array and key in $permissions array must be identical.
-$permissions = array(
+$general_permissions = array(
   'anonymous' => array(
     // Search
     'access content',
@@ -28,13 +32,9 @@ $permissions = array(
     'search content'
   ),
   'editor' => array(
-    // ckeditor
-    'access ckeditor link',
     // search
     'access content',
     'search content',
-    // text formats
-    'use text format filtered_html',
   ),
   'administrator' => array(
     // admin_menu
@@ -42,8 +42,6 @@ $permissions = array(
     'flush caches',
     // blocks
     'administer blocks',
-    // ckeditor
-    'access ckeditor link',
     // contextual links
     'access contextual links',
     // dashboard
@@ -51,17 +49,12 @@ $permissions = array(
     // googleanalytics
     //'administer google analytics',
     //'opt-in or out of tracking',
-    // locale
-    'translate interface',
     // menu
     'administer menu',
     // node
     'administer nodes',
     'access content overview',
     'view own unpublished content',
-    'create page content',
-    'edit any page content',
-    'delete any page content',
     // path
     'administer url aliases',
     'create url aliases',
@@ -71,7 +64,5 @@ $permissions = array(
     'view the administration theme',
     // taxonomy
     'administer taxonomy',
-    // text formats
-    'use text format filtered_html',
   ),
 );
