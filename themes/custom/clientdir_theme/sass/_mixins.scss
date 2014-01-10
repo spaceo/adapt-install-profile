@@ -65,5 +65,8 @@
   background-image: -ms-#{$image};
 }
 
-
-
+/* FONTS */
+@mixin font {
+  font-family: 'Verdana', sans-serif;
+  color: $text-color;
+}

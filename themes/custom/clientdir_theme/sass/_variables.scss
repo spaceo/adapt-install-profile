@@ -1,2 +1,9 @@
 $body-color: #fff;
-$content-width: 960px;
+$text-color: #000;
+$width: 960;
+$content-width: $width + "px";
+
+/* GRIDS */
+$grids: 12;
+$gutters-in-px: 20; //px
+$gutters: $gutters-in-px/(($width-(11*$gutters-in-px))/$grids);

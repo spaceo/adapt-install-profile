@@ -1,0 +1,9 @@
+/* Welcome to Compass. In this file you should write your main styles. (or centralize your imports) Import this file using the following HTML or equivalent: <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* MEDIA QUERIES */
+/* GRADIENTS */
+/* FONTS */
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family: 'Verdana', sans-serif; color: black; margin: 0px; padding: 0px; }
+
+body { background: white; }
+
+/* HEADER */

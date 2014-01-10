@@ -1,4 +1,17 @@
+* {
+  @include box-sizing(border-box);
+  @include font;
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
   background: $body-color;
-  font-family: 'Verdana', sans-serif;
+}
+
+h1 {
+}
+h2 {
+}
+h3 {
 }
