@@ -1,6 +1,3 @@
-$body-color: #E8ECF6;
-$content-width: 990px;
-
 /* MEDIA QUERIES */
 @mixin device($media) {
 	@if $media == phone {
@@ -48,8 +45,8 @@ $content-width: 990px;
   	border-right: $size solid $color;
   	border-bottom: $size solid transparent;
   } @else if $direction == 'top-left' {
-    border-top: $size solid $color; 
-    border-right: $size solid transparent;	
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
   } @else if $direction == 'top-right' {
     border-top: $size solid $color;
     border-left: $size solid transparent;
