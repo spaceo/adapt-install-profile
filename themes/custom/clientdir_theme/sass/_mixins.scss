@@ -1,0 +1,72 @@
+$body-color: #E8ECF6;
+$content-width: 990px;
+
+/* MEDIA QUERIES */
+@mixin device($media) {
+	@if $media == phone {
+		@media screen and (max-width: 700px) { @content;}
+	}
+	@else if $media == tablet {
+		@media screen and (max-width: 945px) { @content; }
+	}
+	@else if $media == screen {
+		@media screen and (min-width: 1030px) { @content; }
+	}
+}
+
+@mixin content{
+	margin: 0 auto;
+	width: $content-width;
+	@include device(tablet){
+		width: 100%;
+		padding: 0 10px;
+	}
+	@include device(phone){
+		width: 100%;
+		padding: 0;
+	}
+}
+
+@mixin arrow($direction, $color, $size){
+  display: block;
+  height: 0;
+  width: 0;
+  @if $direction == 'top' {
+    border-left: $size solid transparent;
+  	border-right: $size solid transparent;
+  	border-bottom: $size solid $color;
+  } @else if $direction == 'right' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+  	border-left: $size solid $color;
+  } @else if $direction == 'bottom' {
+    border-top: $size solid $color;
+    border-right: $size solid transparent;
+    border-left: $size solid transparent;
+  } @else if $direction == 'left' {
+    border-top: $size solid transparent;
+  	border-right: $size solid $color;
+  	border-bottom: $size solid transparent;
+  } @else if $direction == 'top-left' {
+    border-top: $size solid $color; 
+    border-right: $size solid transparent;	
+  } @else if $direction == 'top-right' {
+    border-top: $size solid $color;
+    border-left: $size solid transparent;
+  } @else if $direction == 'bottom-left' {
+    border-bottom: $size solid $color;
+    border-right: $size solid transparent;
+  } @else if $direction == 'bottom-right' {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+  }
+}
+
+/* GRADIENTS */
+@mixin background-image-with-ms($image) {
+  @include background-image($image);
+  background-image: -ms-#{$image};
+}
+
+
+
