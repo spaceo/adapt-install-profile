@@ -39,7 +39,7 @@ projects[devel][version] = '1.3'
 ; entity
 projects[entity][type] = 'module'
 projects[entity][subdir] = 'contrib'
-projects[entity][version] = '1.2'
+projects[entity][version] = '1.3'
 
 ; entityreference
 projects[entityreference][type] = 'module'
