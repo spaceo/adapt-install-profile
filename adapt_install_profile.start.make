@@ -136,6 +136,11 @@ projects[ultimate_cron][type] = 'module'
 projects[ultimate_cron][subdir] = 'contrib'
 projects[ultimate_cron][version] = '1.9'
 
+; variable
+projects[variable][type] = 'module'
+projects[variable][subdir] = 'contrib'
+projects[variable][version] = '2.4'
+
 ; views
 projects[views][type] = 'module'
 projects[views][subdir] = 'contrib'
