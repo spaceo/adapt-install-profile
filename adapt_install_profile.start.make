@@ -51,7 +51,7 @@ projects[entityreference][type] = 'module'
 projects[entityreference][subdir] = 'contrib'
 projects[entityreference][version] = '1.1'
 
-; entity view modes
+; entity view mode
 projects[entity_view_mode][type] = 'module'
 projects[entity_view_mode][subdir] = 'contrib'
 projects[entity_view_mode][version] = '1.0-rc1'

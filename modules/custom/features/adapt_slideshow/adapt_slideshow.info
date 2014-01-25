@@ -1,7 +1,7 @@
 name = Slideshow
 description = Creates content type "Slide", together with a view
 core = 7.x
-package = Features
+package = Adapt
 dependencies[] = entity
 dependencies[] = features
 dependencies[] = link
