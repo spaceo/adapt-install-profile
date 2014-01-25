@@ -41,6 +41,7 @@ dependencies[] = devel
 dependencies[] = entity
 dependencies[] = entity_token
 dependencies[] = entityreference
+dependencies[] = entity_view_mode
 dependencies[] = environment
 dependencies[] = file_entity
 dependencies[] = features
