@@ -21,10 +21,15 @@ projects[background_process][type] = 'module'
 projects[background_process][subdir] = 'contrib'
 projects[background_process][version] = '1.15'
 
-; ckeditor_link
+; ckeditor link
 projects[ckeditor_link][type] = 'module'
 projects[ckeditor_link][subdir] = 'contrib'
 projects[ckeditor_link][version] = '2.3'
+
+; coder
+projects[coder][type] = 'module'
+projects[coder][subdir] = 'contrib'
+projects[coder][version] = '2.1'
 
 ; ctools
 projects[ctools][type] = 'module'
@@ -45,6 +50,11 @@ projects[entity][version] = '1.3'
 projects[entityreference][type] = 'module'
 projects[entityreference][subdir] = 'contrib'
 projects[entityreference][version] = '1.1'
+
+; environment
+projects[environment][type] = 'module'
+projects[environment][subdir] = 'contrib'
+; projects[environment][version] = '1.1' => still in dev
 
 ; file entity
 projects[file_entity][type] = 'module'
@@ -96,15 +106,20 @@ projects[pm_existing_pages][type] = 'module'
 projects[pm_existing_pages][subdir] = 'contrib'
 projects[pm_existing_pages][version] = '1.4'
 
+; pathauto
+projects[pathauto][type] = 'module'
+projects[pathauto][subdir] = 'contrib'
+projects[pathauto][version] = '1.2'
+
 ; progress
 projects[progress][type] = 'module'
 projects[progress][subdir] = 'contrib'
 projects[progress][version] = '1.4'
 
-; pathauto
-projects[pathauto][type] = 'module'
-projects[pathauto][subdir] = 'contrib'
-projects[pathauto][version] = '1.2'
+; stage file proxy
+projects[stage_file_proxy][type] = 'module'
+projects[stage_file_proxy][subdir] = 'contrib'
+projects[stage_file_proxy][version] = '1.4'
 
 ; strongarm
 projects[strongarm][type] = 'module'
