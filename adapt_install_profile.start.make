@@ -57,9 +57,9 @@ projects[features][subdir] = 'contrib'
 projects[features][version] = '2.0'
 
 ; google analytics
-projects[googleanalytics][type] = 'module'
-projects[googleanalytics][subdir] = 'contrib'
-projects[googleanalytics][version] = '1.4'
+projects[google_analytics][type] = 'module'
+projects[google_analytics][subdir] = 'contrib'
+projects[google_analytics][version] = '1.4'
 
 ; jquery update
 projects[jquery_update][type] = 'module'
