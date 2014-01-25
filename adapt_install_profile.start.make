@@ -81,6 +81,11 @@ projects[libraries][type] = 'module'
 projects[libraries][subdir] = 'contrib'
 projects[libraries][version] = '2.1'
 
+; link
+projects[link][type] = 'module'
+projects[link][subdir] = 'contrib'
+projects[link][version] = '1.2'
+
 ; media
 projects[media][type] = 'module'
 projects[media][subdir] = 'contrib'
