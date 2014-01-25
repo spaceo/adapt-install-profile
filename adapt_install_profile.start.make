@@ -16,6 +16,11 @@ projects[admin_views][type] = 'module'
 projects[admin_views][subdir] = 'contrib'
 projects[admin_views][version] = '1.2'
 
+; background process
+projects[background_process][type] = 'module'
+projects[background_process][subdir] = 'contrib'
+projects[background_process][version] = '1.15'
+
 ; ckeditor_link
 projects[ckeditor_link][type] = 'module'
 projects[ckeditor_link][subdir] = 'contrib'
@@ -76,11 +81,6 @@ projects[menu_trail_by_path][type] = 'module'
 projects[menu_trail_by_path][subdir] = 'contrib'
 projects[menu_trail_by_path][version] = '2.0'
 
-; page manager existing pages
-projects[pm_existing_pages][type] = 'module'
-projects[pm_existing_pages][subdir] = 'contrib'
-projects[pm_existing_pages][version] = '1.4'
-
 ; panels
 projects[panels][type] = 'module'
 projects[panels][subdir] = 'contrib'
@@ -90,6 +90,16 @@ projects[panels][version] = '3.3'
 projects[panels_everywhere][type] = 'module'
 projects[panels_everywhere][subdir] = 'contrib'
 projects[panels_everywhere][version] = '1.0-rc1'
+
+; page manager existing pages
+projects[pm_existing_pages][type] = 'module'
+projects[pm_existing_pages][subdir] = 'contrib'
+projects[pm_existing_pages][version] = '1.4'
+
+; progress
+projects[progress][type] = 'module'
+projects[progress][subdir] = 'contrib'
+projects[progress][version] = '1.4'
 
 ; pathauto
 projects[pathauto][type] = 'module'
