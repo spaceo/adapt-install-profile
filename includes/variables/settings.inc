@@ -12,6 +12,12 @@ $site_default_country = 'DK';
 
 // Define all variables per module
 $variables = array(
+  'jquery_update' => array(
+    'jquery_update_compression_type' => 'none',
+    'jquery_update_jquery_cdn' => 'google',
+    'jquery_update_jquery_version' => '1.7',
+    ),
+
   'pathauto' => array(
     // Disables the removing of the slash when creating an alias.
     'pathauto_punctuation_slash' => 2,
