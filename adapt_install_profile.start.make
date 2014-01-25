@@ -146,6 +146,11 @@ projects[views][type] = 'module'
 projects[views][subdir] = 'contrib'
 projects[views][version] = '3.7'
 
+; views bulk operations
+projects[views_bulk_operations][type] = 'module'
+projects[views_bulk_operations][subdir] = 'contrib'
+projects[views_bulk_operations][version] = '3.2'
+
 ; xmlsitemap
 projects[xmlsitemap][type] = 'module'
 projects[xmlsitemap][subdir] = 'contrib'

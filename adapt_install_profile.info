@@ -60,6 +60,7 @@ dependencies[] = ultimate_cron
 dependencies[] = uuid
 dependencies[] = variable
 dependencies[] = views
+dependencies[] = views_bulk_operations
 dependencies[] = views_ui
 dependencies[] = wysiwyg
 dependencies[] = xmlsitemap
