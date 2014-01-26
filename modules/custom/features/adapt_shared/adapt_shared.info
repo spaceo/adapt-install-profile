@@ -1,6 +1,0 @@
-name = Shared
-description = Field bases etc that are shared across multiple content types
-core = 7.x
-package = Features
-features[features_api][] = api:2
-project path = profiles/adapt_install_profile/modules/custom/features
