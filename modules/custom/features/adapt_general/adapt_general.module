@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the General settings feature.
+ */
+
+include_once 'adapt_general.features.inc';

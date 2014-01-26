@@ -42,11 +42,11 @@ $text_formats = array(
     'weight' => 0,
     'filters' => array(
       // CkEditor Link.
-      'ckeditor_link_filter' => array(
+      /*'ckeditor_link_filter' => array(
         'weight' => 0,
         'status' => 1,
         'settings' => array(),
-        ),
+        ),*/
       // URL filter.
       'filter_url' => array(
         'weight' => 1,
@@ -109,9 +109,9 @@ $wysiwyg_settings = array(
           'Table' => 1,
           'Iframe' => 1,
           ),
-        'drupal_path' => array(
+        /*'drupal_path' => array(
           'Link' => 1,
-          ),
+          ),*/
         ),
       'toolbar_loc' => 'top',
       'toolbar_align' => 'left',
@@ -135,20 +135,20 @@ $wysiwyg_settings = array(
 // These will be handled by variable_set()
 $wysiwyg_options = array(
   // Allow any vocabulary to be found by ckEditor Link
-  'ckeditor_link_autocomplete_vocabularies' => array('[- any -]' => '- any -'),
+  //'ckeditor_link_autocomplete_vocabularies' => array('[- any -]' => '- any -'),
   );
 
 // Permissions
 $wysiwyg_permissions = array(
   'editor' => array(
     // ckeditor
-    'access ckeditor link',
+    //'access ckeditor link',
     // text formats
     'use text format filtered_html',
     ),
   'administrator' => array(
     // ckeditor
-    'access ckeditor link',
+    //'access ckeditor link',
     // text formats
     'use text format filtered_html',
     'use text format full_html',

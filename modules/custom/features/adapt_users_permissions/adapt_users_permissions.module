@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Users & permissions feature.
+ */
+
+include_once 'adapt_users_permissions.features.inc';
