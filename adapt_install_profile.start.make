@@ -21,11 +21,6 @@ projects[background_process][type] = 'module'
 projects[background_process][subdir] = 'contrib'
 projects[background_process][version] = '1.15'
 
-; ckeditor link
-projects[ckeditor_link][type] = 'module'
-projects[ckeditor_link][subdir] = 'contrib'
-projects[ckeditor_link][version] = '2.3'
-
 ; coder
 projects[coder][type] = 'module'
 projects[coder][subdir] = 'contrib'
@@ -90,6 +85,11 @@ projects[libraries][version] = '2.1'
 projects[link][type] = 'module'
 projects[link][subdir] = 'contrib'
 projects[link][version] = '1.2'
+
+; linkit
+projects[linkit][type] = 'module'
+projects[linkit][subdir] = 'contrib'
+projects[linkit][version] = '3.1'
 
 ; media
 projects[media][type] = 'module'
